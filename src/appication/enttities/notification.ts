@@ -1,5 +1,6 @@
-import { Replace } from "../helpers/replace";
-import { Content } from "./content";
+import { randomUUID } from 'crypto';
+import { Replace } from '../helpers/replace';
+import { Content } from './content';
 
 export interface NotificationProps {
   recipientId: string;
@@ -10,14 +11,19 @@ export interface NotificationProps {
 }
 
 export class Notification {
+  private _id: string;
   private props: NotificationProps;
   // private category: string;
 
-  constructor(props: Replace<NotificationProps, {createAt?: Date}>) {
-    this.props =  {
-        ...props,
-        createAt: props.createAt ?? new Date(),
+  constructor(props: Replace<NotificationProps, { createAt?: Date }>) {
+    this._id = randomUUID();
+    this.props = {
+      ...props,
+      createAt: props.createAt ?? new Date(),
     };
+  }
+  public get id() {
+    return this._id;
   }
 
   public set recipientId(recipientId: string) {
@@ -26,7 +32,7 @@ export class Notification {
   public get recipientId(): string {
     return this.props.recipientId;
   }
-  public set Content(content: Content) {
+  public set content(content: Content) {
     this.props.content = content;
   }
   public get content(): Content {
