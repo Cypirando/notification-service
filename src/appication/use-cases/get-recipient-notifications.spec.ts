@@ -19,15 +19,15 @@ describe('Get recipint notification', () => {
     );
 
     await notificationsRepository.create(
-        makeNotfication({
-            recipientId: 'recipient-1',
-          }),
+      makeNotfication({
+        recipientId: 'recipient-1',
+      }),
     );
 
     await notificationsRepository.create(
-        makeNotfication({
-            recipientId: 'recipient-2',
-          }),
+      makeNotfication({
+        recipientId: 'recipient-2',
+      }),
     );
 
     const { notification } = await getRecipientNotifications.execute({
@@ -35,9 +35,11 @@ describe('Get recipint notification', () => {
     });
 
     expect(notification).toHaveLength(2);
-    expect(notification).toEqual(expect.arrayContaining([
-        expect.objectContaining({recipientId: 'recipient-1'}),
-        expect.objectContaining({recipientId: 'recipient-1'}),
-    ]));
+    expect(notification).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ recipientId: 'recipient-1' }),
+        expect.objectContaining({ recipientId: 'recipient-1' }),
+      ]),
+    );
   });
 });

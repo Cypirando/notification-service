@@ -18,15 +18,15 @@ describe('Count recipint notification', () => {
     );
 
     await notificationsRepository.create(
-        makeNotfication({
-            recipientId: 'recipient-1',
-          }),
+      makeNotfication({
+        recipientId: 'recipient-1',
+      }),
     );
 
     await notificationsRepository.create(
-        makeNotfication({
-            recipientId: 'recipient-2',
-          }),
+      makeNotfication({
+        recipientId: 'recipient-2',
+      }),
     );
 
     const { count } = await countRecipientNotifications.execute({

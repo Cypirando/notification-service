@@ -6,23 +6,24 @@ interface calcelNotificationRequest {
   notificationId: string;
 }
 
-type calcelNotificationResponse = void
+type calcelNotificationResponse = void;
 
 @Injectable()
 export class CanlcelNotification {
   constructor(private notificationsRepository: NotificationsRepository) {}
-  
+
   async execute(
     request: calcelNotificationRequest,
   ): Promise<calcelNotificationResponse> {
     const { notificationId } = request;
-     const notification = await this.notificationsRepository.findById(notificationId,)
+    const notification = await this.notificationsRepository.findById(
+      notificationId,
+    );
     if (!notification) {
-        throw new NotificationNotFound()
+      throw new NotificationNotFound();
     }
     notification.cancel();
-     
-    await this.notificationsRepository.save(notification);
-    };
-  }
 
+    await this.notificationsRepository.save(notification);
+  }
+}

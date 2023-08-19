@@ -25,9 +25,7 @@ export class NotificationsController {
   }
 
   @Get('count/from/:recipientId')
-  async countFromRecipient(
-    @Param('recipientId') recipientId: string,
-  ) {
+  async countFromRecipient(@Param('recipientId') recipientId: string) {
     const { count } = await this.countRecipientNotifications.execute({
       recipientId,
     });
@@ -37,14 +35,12 @@ export class NotificationsController {
   }
 
   @Get('from/:recipientId')
-  async getFormRecipient(
-    @Param('recipientId') recipientId: string,
-  ) {
+  async getFormRecipient(@Param('recipientId') recipientId: string) {
     const { notification } = await this.getRecipientNotifications.execute({
       recipientId,
     });
     return {
-      notification: notification.map(NotificationVielModel.toHTTP)
+      notification: notification.map(NotificationVielModel.toHTTP),
     };
   }
 

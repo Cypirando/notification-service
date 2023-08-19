@@ -11,14 +11,13 @@ import { UnreadNotification } from '@appication/use-cases/unread-notification';
 @Module({
   imports: [DatabaseModule],
   controllers: [NotificationsController],
-  providers:[
+  providers: [
     SendNotification,
     CanlcelNotification,
     CountRecipientNotification,
     GetRecipientNotification,
     ReadNotification,
     UnreadNotification,
-    
-  ]
+  ],
 })
 export class HttpModule {}

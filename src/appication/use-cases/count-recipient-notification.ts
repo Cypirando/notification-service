@@ -6,23 +6,22 @@ interface CountRecipientNotificationRequest {
 }
 
 interface CountRecipientNotificationResponse {
-    count:number;
+  count: number;
 }
 
 @Injectable()
 export class CountRecipientNotification {
   constructor(private notificationsRepository: NotificationsRepository) {}
-  
+
   async execute(
     request: CountRecipientNotificationRequest,
   ): Promise<CountRecipientNotificationResponse> {
     const { recipientId } = request;
-     const count = await this.notificationsRepository.countManyByRecipientId(
-        recipientId,
-     )
-     return {
-        count,
-     }
+    const count = await this.notificationsRepository.countManyByRecipientId(
+      recipientId,
+    );
+    return {
+      count,
     };
   }
-
+}
